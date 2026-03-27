@@ -1,9 +1,9 @@
 api_base_url: https://api.bifrost.saastack.site
-project_id: e70aebe3-8c16-4e12-a705-62c0f89d7e54
-project_name: appointy-landing-v2
-service_id: dd29a8dd-cfad-4d5c-80d0-0b263a52a877
-service_name: landing-web
-environment_id: 26797f0d-7ed0-4734-9fc9-8cfd19d949ff
-environment_name: production
+project_id: 4d23023c-d0ae-4a4a-a4c4-35e4814ae330
+project_name: appointy-enterprise-landing
+service_id: 1bca7676-52bf-40f3-8114-ef41a09b5c54
+service_name: appointy-enterprise-landing
+environment_id: f2263d0f-f7c6-4cee-9d2e-3067d1024c0c
+environment_name: live
 repository_url: https://github.com/chandrashekhar-appointy/appointy-enterprise-landing.git
 default_branch: main
