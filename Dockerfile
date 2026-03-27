@@ -24,20 +24,9 @@ RUN npm run build
 
 FROM nginx:1.27-alpine AS runtime
 
-LABEL org.opencontainers.image.title="enterprise-landing-page-design"
-LABEL org.opencontainers.image.description="Static enterprise landing page served by nginx"
-
-RUN addgroup -S -g 10001 appgroup \
-  && adduser -S -D -H -u 10001 -G appgroup appuser \
-  && mkdir -p /var/cache/nginx /var/log/nginx /tmp \
-  && chown -R appuser:appgroup /var/cache/nginx /var/log/nginx /usr/share/nginx/html /tmp \
-  && sed -i 's|^user .*;|# user disabled for non-root runtime;|g' /etc/nginx/nginx.conf \
-  && sed -i 's|^pid .*;|pid /tmp/nginx.pid;|g' /etc/nginx/nginx.conf
-
-COPY --chown=10001:10001 nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder --chown=root:root /app/dist /usr/share/nginx/html
-
-USER 10001:10001
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf.bak
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 8080
 
