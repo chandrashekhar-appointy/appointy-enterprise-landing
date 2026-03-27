@@ -29,8 +29,8 @@ LABEL org.opencontainers.image.description="Static enterprise landing page serve
 
 RUN addgroup -S -g 10001 appgroup \
   && adduser -S -D -H -u 10001 -G appgroup appuser \
-  && mkdir -p /var/cache/nginx /var/run /var/log/nginx \
-  && chown -R appuser:appgroup /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html \
+  && mkdir -p /var/cache/nginx /var/log/nginx /tmp \
+  && chown -R appuser:appgroup /var/cache/nginx /var/log/nginx /usr/share/nginx/html /tmp \
   && sed -i 's|^user .*;|# user disabled for non-root runtime;|g' /etc/nginx/nginx.conf \
   && sed -i 's|^pid .*;|pid /tmp/nginx.pid;|g' /etc/nginx/nginx.conf
 
